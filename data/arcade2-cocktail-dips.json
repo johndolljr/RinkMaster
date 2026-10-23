@@ -1,0 +1,731 @@
+{
+ "dips": {
+  "1942": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSWA",
+    "mask": "8",
+    "cocktail": "Cocktail",
+    "cvalue": "8",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "1943": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSWA",
+    "mask": "32",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "32"
+   }
+  ],
+  "1943u": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSWA",
+    "mask": "32",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "32"
+   }
+  ],
+  "88games": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW2",
+    "mask": "6",
+    "cocktail": "Cocktail",
+    "cvalue": "6",
+    "default": "Upright",
+    "dvalue": "2"
+   }
+  ],
+  "arknoid2": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSWA",
+    "mask": "1",
+    "cocktail": "Cocktail",
+    "cvalue": "1",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "bombjack": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW1",
+    "mask": "64",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "64"
+   }
+  ],
+  "btime": [
+   {
+    "dip": "Control Panel",
+    "tag": "DSW1",
+    "mask": "64",
+    "cocktail": "Cocktail",
+    "cvalue": "64",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "btimem": [
+   {
+    "dip": "Control Panel",
+    "tag": "DSW1",
+    "mask": "64",
+    "cocktail": "Cocktail",
+    "cvalue": "64",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "cameltry": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSWA",
+    "mask": "1",
+    "cocktail": "Cocktail",
+    "cvalue": "1",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "ccastles": [
+   {
+    "dip": "Cabinet",
+    "tag": "IN1",
+    "mask": "32",
+    "cocktail": "Cocktail",
+    "cvalue": "32",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "congo": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW02",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "128",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "congoa": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW02",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "128",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "ddragon": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW0",
+    "mask": "64",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "64"
+   }
+  ],
+  "ddragon2": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW0",
+    "mask": "64",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "64"
+   }
+  ],
+  "ddragon2u": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW0",
+    "mask": "64",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "64"
+   }
+  ],
+  "ddragonub": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW0",
+    "mask": "64",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "64"
+   }
+  ],
+  "demoderb": [
+   {
+    "dip": "Cabinet",
+    "tag": "ssio:IP3",
+    "mask": "1",
+    "cocktail": "4P Cocktail",
+    "cvalue": "0",
+    "default": "2P Upright",
+    "dvalue": "1"
+   }
+  ],
+  "digdug": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSWB",
+    "mask": "4",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "4"
+   }
+  ],
+  "dkong": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW0",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "128"
+   }
+  ],
+  "dkong3": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW0",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "128",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "dkongjr": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW0",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "128"
+   }
+  ],
+  "elevator": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW1",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "128",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "frogger": [
+   {
+    "dip": "Cabinet",
+    "tag": "IN2",
+    "mask": "8",
+    "cocktail": "Cocktail",
+    "cvalue": "8",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "galaga": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSWA",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "128"
+   }
+  ],
+  "galagamf": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSWA",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "128"
+   }
+  ],
+  "galagao": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSWA",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "128"
+   }
+  ],
+  "galaxian": [
+   {
+    "dip": "Cabinet",
+    "tag": "IN0",
+    "mask": "32",
+    "cocktail": "Cocktail",
+    "cvalue": "32",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "galaxianmo": [
+   {
+    "dip": "Cabinet",
+    "tag": "IN0",
+    "mask": "32",
+    "cocktail": "Cocktail",
+    "cvalue": "32",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "gyruss": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW2",
+    "mask": "4",
+    "cocktail": "Cocktail",
+    "cvalue": "4",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "hpolym84": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW2",
+    "mask": "2",
+    "cocktail": "Cocktail",
+    "cvalue": "2",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "hyperspt": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW2",
+    "mask": "2",
+    "cocktail": "Cocktail",
+    "cvalue": "2",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "invad2ct": [
+   {
+    "dip": "Cabinet",
+    "tag": "IN2",
+    "mask": "8",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "8"
+   }
+  ],
+  "mpatrol": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW2",
+    "mask": "2",
+    "cocktail": "Cocktail",
+    "cvalue": "2",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "mrdo": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW1",
+    "mask": "32",
+    "cocktail": "Cocktail",
+    "cvalue": "32",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "mspacman": [
+   {
+    "dip": "Cabinet",
+    "tag": "IN1",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "128"
+   }
+  ],
+  "myqbert": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW",
+    "mask": "4",
+    "cocktail": "Cocktail",
+    "cvalue": "4",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "pacman": [
+   {
+    "dip": "Cabinet",
+    "tag": "IN1",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "128"
+   }
+  ],
+  "pengo": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW0",
+    "mask": "4",
+    "cocktail": "Cocktail",
+    "cvalue": "4",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "pengo4": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW0",
+    "mask": "4",
+    "cocktail": "Cocktail",
+    "cvalue": "4",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "puckman": [
+   {
+    "dip": "Cabinet",
+    "tag": "IN1",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "128"
+   }
+  ],
+  "qbert": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW",
+    "mask": "4",
+    "cocktail": "Cocktail",
+    "cvalue": "4",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "qberta": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW",
+    "mask": "4",
+    "cocktail": "Cocktail",
+    "cvalue": "4",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "rastan": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSWA",
+    "mask": "1",
+    "cocktail": "Cocktail",
+    "cvalue": "1",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "rastanua": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSWA",
+    "mask": "1",
+    "cocktail": "Cocktail",
+    "cvalue": "1",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "shinobi": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW2",
+    "mask": "1",
+    "cocktail": "Cocktail",
+    "cvalue": "1",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "sqbert": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW",
+    "mask": "4",
+    "cocktail": "Cocktail",
+    "cvalue": "4",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "tempest": [
+   {
+    "dip": "Cabinet",
+    "tag": "IN1/DSW0",
+    "mask": "16",
+    "cocktail": "Cocktail",
+    "cvalue": "0",
+    "default": "Upright",
+    "dvalue": "16"
+   }
+  ],
+  "timeplt": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW1",
+    "mask": "4",
+    "cocktail": "Cocktail",
+    "cvalue": "4",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "trackfld": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW2",
+    "mask": "4",
+    "cocktail": "Cocktail",
+    "cvalue": "4",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "wcbowl": [
+   {
+    "dip": "Cabinet",
+    "tag": "DIPS",
+    "mask": "2097152",
+    "cocktail": "Cocktail",
+    "cvalue": "2097152",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "zaxxon": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW02",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "128",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ],
+  "zaxxon3": [
+   {
+    "dip": "Cabinet",
+    "tag": "DSW02",
+    "mask": "128",
+    "cocktail": "Cocktail",
+    "cvalue": "128",
+    "default": "Upright",
+    "dvalue": "0"
+   }
+  ]
+ },
+ "cores": {
+  "1941": "lr-mame2010",
+  "1941u": "lr-mame2016",
+  "1942": "lr-mame2010",
+  "1943": "lr-mame2010",
+  "1943u": "lr-mame2010",
+  "1944": "lr-mame2010",
+  "19xx": "lr-mame2010",
+  "20pacgal": "lr-mame2010",
+  "88games": "lr-mame2010",
+  "aburner": "lr-mame2010",
+  "aburner2": "lr-mame2010",
+  "aerofgt": "lr-mame2010",
+  "agallet": "lr-mame2010",
+  "agalletu": "lr-mame2010",
+  "airass": "lr-mame2016",
+  "airattck": "lr-mame2010",
+  "airattcka": "lr-mame2010",
+  "airduel": "lr-mame2010",
+  "airduelm72": "lr-mame2016",
+  "arkanoid": "lr-mame2003",
+  "arknoid2": "lr-mame2010",
+  "astdelux": "lr-mame2010",
+  "asteroid": "lr-mame2010",
+  "asteroid1": "lr-mame2010",
+  "atarisy1": "lr-mame2010",
+  "atetris": "lr-mame2010",
+  "atetrisa": "lr-mame2010",
+  "atetrisc": "lr-mame2010",
+  "atetrisc2": "lr-mame2010",
+  "atlantol": "lr-mame2010",
+  "batsugun": "lr-mame2016",
+  "bbakraid": "lr-mame2016",
+  "bbbxing": "lr-mame2010",
+  "bgaregga": "lr-mame2010",
+  "bgareggabl": "lr-mame2016",
+  "bombjack": "lr-mame2010",
+  "btime": "lr-mame2010",
+  "btimem": "lr-mame2010",
+  "cairblad": "lr-mame2010",
+  "cameltry": "lr-mame2010",
+  "ccastles": "lr-mame2010",
+  "congo": "lr-mame2010",
+  "congoa": "lr-mame2016",
+  "contra": "lr-mame2010",
+  "contrae": "lr-mame2016",
+  "ddonpach": "lr-mame2010",
+  "ddragon": "lr-mame2010",
+  "ddragon2": "lr-mame2010",
+  "ddragon2u": "lr-mame2010",
+  "ddragon3": "lr-mame2010",
+  "ddragonub": "lr-mame2010",
+  "ddsom": "lr-mame2010",
+  "ddtod": "lr-mame2010",
+  "defender": "lr-mame2010",
+  "demoderb": "lr-mame2010",
+  "demoderbc": "lr-mame2016",
+  "dfkbl": "lr-mame2016",
+  "digdug": "lr-mame2010",
+  "dkong": "lr-mame2003",
+  "dkong3": "lr-mame2003",
+  "dkongjr": "lr-mame2003",
+  "donpachi": "lr-mame2010",
+  "elevator": "lr-mame2010",
+  "fghtatck": "lr-mame2010",
+  "frogger": "lr-mame2010",
+  "gaialast": "lr-mame2016",
+  "galaga": "lr-mame2010",
+  "galaga88": "lr-mame2010",
+  "galagamf": "lr-mame2010",
+  "galagao": "lr-mame2010",
+  "galaxian": "lr-mame2010",
+  "galaxianmo": "lr-mame2016",
+  "gaunt2": "lr-mame2010",
+  "gaunt22p": "lr-mame2010",
+  "gauntlet": "lr-mame2010",
+  "gauntlet2p": "lr-mame2010",
+  "gigawing": "lr-mame2010",
+  "gyruss": "lr-mame2010",
+  "hangon": "lr-mame2010",
+  "hangon2": "lr-mame2016",
+  "hpolym84": "lr-mame2010",
+  "hyperspt": "lr-mame2010",
+  "ikari": "lr-mame2010",
+  "invad2ct": "lr-mame2010",
+  "invaddlx": "lr-mame2010",
+  "invaders": "lr-mame2010",
+  "invadpt2": "lr-mame2010",
+  "joust": "lr-mame2010",
+  "llander": "lr-mame2010",
+  "marble": "lr-mame",
+  "maze": "lr-mame2010",
+  "mhavoc": "lr-mame2010",
+  "midssio": "lr-mame2010",
+  "mpatrol": "lr-mame2010",
+  "mrdo": "lr-mame2010",
+  "mspacman": "lr-mame2010",
+  "myqbert": "lr-mame2010",
+  "namco51": "lr-mame2010",
+  "namco52": "lr-mame2010",
+  "namco53": "lr-mame2010",
+  "namco54": "lr-mame2010",
+  "namcoc69": "lr-mame2010",
+  "offroad": "lr-mame2010",
+  "outrun": "lr-mame2010",
+  "pacman": "lr-mame2010",
+  "pang": "lr-mame2010",
+  "pangb2": "lr-mame2016",
+  "paperboy": "lr-mame2010",
+  "pengo": "lr-mame2010",
+  "pengo4": "lr-mame2010",
+  "polepos": "lr-mame2016",
+  "polepos2": "lr-mame2010",
+  "pong": "lr-mame2015",
+  "puckman": "lr-mame2010",
+  "qbert": "lr-mame2010",
+  "qberta": "lr-mame2010",
+  "qix": "lr-mame2010",
+  "qsound": "lr-mame2010",
+  "raiden": "lr-mame2016",
+  "raiden2": "lr-mame2010",
+  "raiden2u": "lr-mame2016",
+  "raidendx": "lr-mame2010",
+  "raidendxu": "lr-mame2016",
+  "rampage": "lr-mame2010",
+  "rastan": "lr-mame2016",
+  "rastanua": "lr-mame2016",
+  "rdft": "lr-mame2010",
+  "rdftu": "lr-mame2010",
+  "sbrkout": "lr-mame2010",
+  "sf2": "lr-mame2010",
+  "shinobi": "lr-mame2010",
+  "spyhunt": "lr-mame2016",
+  "sqbert": "lr-mame2010",
+  "ssmissin": "lr-mame2010",
+  "stargate": "lr-mame2010",
+  "tempest": "lr-mame2003",
+  "timeplt": "lr-mame2010",
+  "trackfld": "lr-mame2010",
+  "wcbowl": "lr-mame2010",
+  "wcbowl165": "lr-mame2010",
+  "wheelrun": "lr-mame2010",
+  "xenophob": "lr-mame2010",
+  "zaxxon": "lr-mame2010",
+  "zaxxon3": "lr-mame2010"
+ },
+ "unknown": [
+  "midssio",
+  "namco51",
+  "namco52",
+  "namco53",
+  "namco54",
+  "namcoc69",
+  "qsound"
+ ]
+}
