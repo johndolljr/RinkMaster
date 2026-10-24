@@ -20,7 +20,8 @@ RinkMaster solves this by providing:
 4. **Unified High Scores:** Automatically collect high-score files (`.hi`, `.nv`) from all your cabinets, decode score tables across different MAME core formats, find the reigning champions, and synchronize the best scores across all machines.
 5. **Play on Mac:** Launch games locally on your Mac using MAME or RetroArch directly from the detail view, pre-staging winning arcade high scores so you can compete against your cabinets.
 6. **Configurable Arcade Branding:** Personalize the header with your own arcade title, subtitle, and year/tagline to match your personal arcade setup.
-7. **Built-in Model Context Protocol (MCP) Server:** Allows AI assistants (Claude Code, Antigravity, Codex) to inspect machine inventories, search games, plan game installs, and query high scores via stdio.
+7. **Cabinet Theme Installation:** Install and activate matched arcade themes directly from the app, MCP, or CLI (supporting `dll-arcade` for EmulationStation and `rink` for Attract-Mode).
+8. **Built-in Model Context Protocol (MCP) Server:** Allows AI assistants (Claude Code, Antigravity, Codex) to inspect machine inventories, search games, plan game installs, install themes, and query high scores via stdio.
 
 ---
 

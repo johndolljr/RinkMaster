@@ -26,6 +26,7 @@ RinkMaster/
 | `MasterLibrary` | Index of the NAS master: ROM sets by version, `extras`, `other-systems`, artwork (`artwork/best`), MAME XML + `history.dat` metadata. Cached in SQLite. |
 | `GameDB` | Merged per-game record: name, description, year, manufacturer, parent/clone, history text, art paths, which sets contain it, which machines have it. |
 | `Installer` | Add (copy ROM + required parents/BIOS/devices from the master, per-game core choice, art sync, frontend list update) and remove (confirmed deletion on the machine only). Reuses the `arcade-roms.py` content-matching ideas (zip member CRCs). |
+| `ThemeInstaller` | Install and activate matching cabinet themes (`dll-arcade` for EmulationStation, `rink` for Attract-Mode). Uses `rinkmasterd` service archives when available, with `RemoteShell` fallback. |
 | `HighScores` | Collect `.hi` files, decode via per-game definitions, build the unified table, choose the best file per game, distribute. Decoding is behind a `ScoreDecoder` protocol (hi2txt definitions first, native decoders after). |
 | `Sync` | Orchestrates collect -> decode -> merge -> distribute with a dry-run mode and a log. |
 
@@ -42,7 +43,7 @@ action (later).
 `rinkmasterd` (Python 3.9 stdlib, systemd, port 8472) runs on each cabinet. Endpoints (v1): `GET /health`,
 `GET /v1/inventory` (cached, ETag), `GET /v1/games/<system>/<name>`, `GET /v1/scores` and
 `GET /v1/scores/<core>/<game>` (raw `.hi`/`.nv` bytes), `POST /v1/refresh`, `DELETE /v1/games/<system>/<name>`
-(`?dryRun=1`, `?withArt=1`, `?withSaves=1`). The app's `ServiceClient` (URLSession) decodes the JSON into the same
+(`?dryRun=1`, `?withArt=1`, `?withSaves=1`), `GET /v1/theme`, `POST /v1/theme/activate`, `POST /v1/theme/install`. The app's `ServiceClient` (URLSession) decodes the JSON into the same
 `MachineInventory` the SSH reader produces; if the service is down the app falls back to `InventoryReader`.
 Emulator management (`emucfg.py`): `GET /v1/emulators` lists each system's emulator ids and default;
 `POST|PUT /v1/emulators/default` body `{"system","emulator"}` rewrites `default = "<id>"` in the system's `emulators.cfg`;

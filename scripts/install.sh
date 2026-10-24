@@ -21,6 +21,11 @@ cp "$SRC" "$DEST/Contents/MacOS/$SPM_EXECUTABLE"
 # fonts live in the app bundle (Contents/Resources/Fonts); the SwiftPM resource bundle is only used for dev runs
 mkdir -p "$DEST/Contents/Resources/Fonts"
 cp "$REPO_ROOT"/Sources/"$SPM_EXECUTABLE"/Resources/Fonts/*.ttf "$DEST/Contents/Resources/Fonts/"
+# themes live in Contents/Resources/themes so the app can install them on cabinets
+if [[ -d "$REPO_ROOT/themes" ]]; then
+  mkdir -p "$DEST/Contents/Resources/themes"
+  cp -R "$REPO_ROOT/themes/"* "$DEST/Contents/Resources/themes/"
+fi
 # the MCP server ships inside the app bundle so there is one thing to install and one path to register with agents
 MCP_SRC="$(dirname "$SRC")/rinkmaster-mcp"
 [[ -f "$MCP_SRC" ]] || die "MCP server not built at $MCP_SRC"

@@ -9,7 +9,7 @@ import time
 import urllib.parse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-from . import actions, emucfg, emulators, frontend, gamelist, scores
+from . import actions, emucfg, emulators, frontend, gamelist, scores, theme
 from .cache import InventoryCache
 
 # path -> allowed methods
@@ -25,6 +25,9 @@ ROUTES = {
     "/v1/frontend/restart": {"POST"},
     "/v1/scores": {"GET"},
     "/v1/scores/file": {"GET", "PUT"},
+    "/v1/theme": {"GET"},
+    "/v1/theme/activate": {"POST"},
+    "/v1/theme/install": {"POST"},
 }
 MAX_JSON_BODY = 64 * 1024
 MAX_GAMELIST_BODY = 2 * 1024 * 1024  # a batch of games with their descriptions
@@ -230,6 +233,43 @@ def _handler_for(ctx: Context):
                 self._json(200, frontend.restart(ctx.cache.configs_path, force=force, attract_bin=ctx.attract_bin))
             except frontend.Busy as e:
                 self._json(409, {"error": str(e)})
+
+        def _v1_theme(self):
+            status = theme.get_theme_status(ctx.cache.configs_path)
+            status["machine"] = ctx.cache.hostname
+            self._json(200, status)
+
+        def _v1_theme_activate(self):
+            try:
+                body = self._body_object()
+                result = theme.activate_theme(ctx.cache.configs_path, body.get("theme", ""))
+            except theme.BadRequest as e:
+                return self._json(400, {"error": str(e)})
+            except theme.NotFound as e:
+                return self._json(404, {"error": str(e)})
+            except _TooLarge:
+                return self._json(413, {"error": "request body too large"}, {"Connection": "close"})
+            result["machine"] = ctx.cache.hostname
+            self._json(200, result)
+
+        def _v1_theme_install(self):
+            name = self.query.get("name", [""])[0]
+            activate = self.query.get("activate", ["1"])[0] in ("1", "true", "yes")
+            length = int(self.headers.get("Content-Length") or 0)
+            if length > theme.MAX_ARCHIVE_BYTES:
+                if length <= 32 * 1024 * 1024:
+                    self.rfile.read(length)
+                self.close_connection = True
+                return self._json(413, {"error": "theme archive too large"}, {"Connection": "close"})
+            archive_bytes = self.rfile.read(length)
+            try:
+                result = theme.install_theme_archive(ctx.cache.configs_path, name, archive_bytes, activate=activate)
+            except theme.BadRequest as e:
+                return self._json(400, {"error": str(e)})
+            except theme.NotFound as e:
+                return self._json(404, {"error": str(e)})
+            result["machine"] = ctx.cache.hostname
+            self._json(200, result)
 
         def _v1_refresh(self):
             r = ctx.cache.refresh()

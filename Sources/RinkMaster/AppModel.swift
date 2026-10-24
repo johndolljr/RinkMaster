@@ -65,6 +65,8 @@ final class AppModel {
     var frontendBusy: Set<String> = []
     var gamelistStatus: [String: String] = [:]
     var gamelistBusy: Set<String> = []
+    var themeStatus: [String: String] = [:]
+    var themeBusy: Set<String> = []
 
     // High scores
     var scores: LoadState<UnifiedScores> = .idle
@@ -523,6 +525,27 @@ final class AppModel {
             frontendStatus[machine.id] = "Failed: " + Self.describeInstall(error)
         }
         return true
+    }
+
+    /// Installs and activates the matching theme (dll-arcade for EmulationStation, rink for Attract-Mode) on the machine.
+    @discardableResult
+    func installTheme(_ machine: Machine) async -> Bool {
+        themeBusy.insert(machine.id)
+        defer { themeBusy.remove(machine.id) }
+        themeStatus[machine.id] = "Installing theme on \(machine.name)..."
+        let installer = ThemeInstaller(
+            machine: machine,
+            shell: SSHShell(target: machine.sshTarget),
+            service: ServiceClient(host: machine.host, port: machine.servicePort)
+        )
+        do {
+            let report = try await installer.install(activate: true, restartFrontend: false)
+            themeStatus[machine.id] = report.message
+            return true
+        } catch {
+            themeStatus[machine.id] = "Failed: " + Self.describeInstall(error)
+            return false
+        }
     }
 
     nonisolated static func describeInstall(_ error: Error) -> String {

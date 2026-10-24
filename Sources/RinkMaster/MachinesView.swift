@@ -12,7 +12,7 @@ struct MachinesView: View {
             machinePicker
             if let machine = model.selectedMachine {
                 header(machine)
-                ForEach([model.frontendStatus[machine.id], model.gamelistStatus[machine.id]].compactMap { $0 }, id: \.self) { status in
+                ForEach([model.frontendStatus[machine.id], model.gamelistStatus[machine.id], model.themeStatus[machine.id]].compactMap { $0 }, id: \.self) { status in
                     Text(status.uppercased()).font(Rink.bebas(20)).foregroundStyle(status.hasPrefix("Failed") || status.hasPrefix("A game") ? Rink.red : Rink.teal)
                 }
                 content(machine)
@@ -44,34 +44,55 @@ struct MachinesView: View {
     }
 
     private func header(_ machine: Machine) -> some View {
-        HStack(spacing: 14) {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(machine.name.uppercased()).font(Rink.title(40)).foregroundStyle(Rink.red)
-                    .shadow(color: Rink.red.opacity(0.8), radius: 10)
-                Text("\(machine.user)@\(machine.host)  -  \(machine.frontend == .attractMode ? "ATTRACT-MODE" : "EMULATIONSTATION")")
-                    .font(Rink.bebas(20)).foregroundStyle(Rink.teal)
-            }
-            Spacer()
-            if case .loaded(let inv) = model.inventories[machine.id] ?? .idle {
-                Text("\(inv.totalGames) GAMES").font(Rink.bungee(22)).foregroundStyle(Rink.amber)
-                switch model.inventorySources[machine.id] {
-                case .service(let cached): Chip(text: cached ? "SERVICE  CACHED" : "SERVICE")
-                case .ssh: Chip(text: "SSH  SERVICE OFFLINE", tint: Rink.amber)
-                case nil: EmptyView()
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .center, spacing: 16) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(machine.name.uppercased()).font(Rink.title(40)).foregroundStyle(Rink.red)
+                        .shadow(color: Rink.red.opacity(0.8), radius: 10)
+                        .lineLimit(1)
+                    Text("\(machine.user)@\(machine.host)  -  \(machine.frontend == .attractMode ? "ATTRACT-MODE" : "EMULATIONSTATION")")
+                        .font(Rink.bebas(20)).foregroundStyle(Rink.teal)
+                        .lineLimit(1)
                 }
+                .fixedSize(horizontal: true, vertical: false)
+
+                Spacer(minLength: 20)
+
+                if case .loaded(let inv) = model.inventories[machine.id] ?? .idle {
+                    HStack(spacing: 12) {
+                        Text("\(inv.totalGames) GAMES").font(Rink.bungee(22)).foregroundStyle(Rink.amber).lineLimit(1)
+                        switch model.inventorySources[machine.id] {
+                        case .service(let cached): Chip(text: cached ? "SERVICE  CACHED" : "SERVICE")
+                        case .ssh: Chip(text: "SSH  SERVICE OFFLINE", tint: Rink.amber)
+                        case nil: EmptyView()
+                        }
+                    }
+                    .fixedSize(horizontal: true, vertical: false)
+                }
+
+                Button("REFRESH") { Task { await model.refreshInventory(machine) } }
+                    .buttonStyle(RinkButtonStyle())
             }
-            Button(machine.frontend == .emulationStation ? "RESTART EMULATIONSTATION" : "REBUILD GAME LISTS") {
-                if machine.frontend == .emulationStation { confirmRestart = true }
-                else { Task { await model.restartFrontend(machine) } }
+
+            HStack(spacing: 12) {
+                Button(machine.frontend == .emulationStation ? "RESTART EMULATIONSTATION" : "REBUILD GAME LISTS") {
+                    if machine.frontend == .emulationStation { confirmRestart = true }
+                    else { Task { await model.restartFrontend(machine) } }
+                }
+                .buttonStyle(RinkButtonStyle(tint: Rink.teal)).disabled(model.frontendBusy.contains(machine.id))
+
+                if machine.frontend == .emulationStation {
+                    Button("SYNC GAME LIST") { Task { await model.syncGamelist(machine) } }
+                        .buttonStyle(RinkButtonStyle(tint: Rink.teal)).disabled(model.gamelistBusy.contains(machine.id))
+                }
+
+                Button("INSTALL THEME") { Task { await model.installTheme(machine) } }
+                    .buttonStyle(RinkButtonStyle(tint: Rink.teal)).disabled(model.themeBusy.contains(machine.id))
+
+                Button("EMULATORS") { managingEmulators = true }.buttonStyle(RinkButtonStyle(tint: Rink.teal))
+
+                Spacer()
             }
-            .buttonStyle(RinkButtonStyle(tint: Rink.teal)).disabled(model.frontendBusy.contains(machine.id))
-            if machine.frontend == .emulationStation {
-                Button("SYNC GAME LIST") { Task { await model.syncGamelist(machine) } }
-                    .buttonStyle(RinkButtonStyle(tint: Rink.teal)).disabled(model.gamelistBusy.contains(machine.id))
-            }
-            Button("EMULATORS") { managingEmulators = true }.buttonStyle(RinkButtonStyle(tint: Rink.teal))
-            Button("REFRESH") { Task { await model.refreshInventory(machine) } }
-                .buttonStyle(RinkButtonStyle())
         }
         .sheet(isPresented: $managingEmulators) { EmulatorsSheet(machine: machine) }
         .confirmationDialog("Restart EmulationStation on \(machine.name)?", isPresented: $confirmRestart) {

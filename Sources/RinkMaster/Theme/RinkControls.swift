@@ -6,6 +6,8 @@ struct RinkButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(Rink.bebas(20))
+            .lineLimit(1)
+            .fixedSize(horizontal: true, vertical: false)
             .foregroundStyle(tint)
             .padding(.horizontal, 18).padding(.vertical, 6)
             .background(Capsule().fill(tint.opacity(configuration.isPressed ? 0.28 : 0.12)))

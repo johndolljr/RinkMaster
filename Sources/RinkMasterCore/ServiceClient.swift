@@ -83,6 +83,34 @@ public struct FrontendRestart: Equatable, Sendable, Decodable {
     public let message: String
 }
 
+public struct ThemeStatus: Equatable, Sendable, Decodable {
+    public let frontend: String
+    public let activeTheme: String?
+    public let installedThemes: [String]
+    public let themesDir: String
+    public let machine: String?
+}
+
+public struct ThemeActivateResult: Equatable, Sendable, Decodable {
+    public let frontend: String
+    public let theme: String
+    public let activeTheme: String
+    public let previousTheme: String?
+    public let changed: Bool
+    public let backup: String?
+    public let machine: String?
+}
+
+public struct ThemeInstallResult: Equatable, Sendable, Decodable {
+    public let frontend: String
+    public let theme: String
+    public let destDir: String
+    public let files: [String]
+    public let activated: Bool
+    public let backup: String?
+    public let machine: String?
+}
+
 /// The answer to changing a system's default emulator or a game's pin.
 public struct EmulatorChange: Equatable, Sendable, Decodable {
     public let system: String
@@ -191,6 +219,21 @@ extension ServiceClient {
     }
 
     public func refreshInventory() async throws { _ = try await send("POST", "v1/refresh") }
+
+    public func themeStatus() async throws -> ThemeStatus {
+        try decode(ThemeStatus.self, await send("GET", "v1/theme", timeout: 10))
+    }
+
+    public func activateTheme(name: String) async throws -> ThemeActivateResult {
+        let body = try JSONSerialization.data(withJSONObject: ["theme": name])
+        return try decode(ThemeActivateResult.self, await send("POST", "v1/theme/activate", body: body, timeout: 30))
+    }
+
+    public func installTheme(name: String, archive: Data, activate: Bool = true) async throws -> ThemeInstallResult {
+        var query = [URLQueryItem(name: "name", value: name)]
+        if !activate { query.append(URLQueryItem(name: "activate", value: "0")) }
+        return try decode(ThemeInstallResult.self, await send("POST", "v1/theme/install", query: query, body: archive, timeout: 60))
+    }
 }
 
 public enum InventorySource: Equatable, Sendable {

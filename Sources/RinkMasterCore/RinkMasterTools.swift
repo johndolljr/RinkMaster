@@ -264,6 +264,42 @@ public enum RinkMasterTools {
                     throw MCPError("a game is running on \(m.name); pass force: true to restart anyway")
                 }
             } },
+            MCPTool(name: "install_theme", description: "Install and activate the theme on an arcade cabinet (dll-arcade for EmulationStation, rink for Attract-Mode). Uses the cabinet service rinkmasterd if available, falling back to SSH/rsync.",
+                    properties: machine.merging([
+                        "theme": .string("Theme name (default: dll-arcade for EmulationStation, rink for Attract-Mode)"),
+                        "activate": .boolean("Activate the theme after installing (default: true)"),
+                        "restart": .boolean("Restart the frontend after installing (default: false)")
+                    ]) { a, _ in a },
+                    required: ["machine"], destructive: true) { a in try await wrap {
+                let m = try await ws.machine(try a.string("machine"))
+                let installer = ThemeInstaller(machine: m, shell: ws.hooks.shell(m), service: ws.hooks.service(m))
+                let report = try await installer.install(
+                    theme: a.optionalString("theme"),
+                    activate: a.bool("activate", default: true),
+                    restartFrontend: a.bool("restart", default: false)
+                )
+                return .object([
+                    "machine": .string(report.machine),
+                    "frontend": .string(report.frontend),
+                    "theme": .string(report.theme),
+                    "method": .string(report.method.rawValue),
+                    "activated": .bool(report.activated),
+                    "files": .array(report.files.map { .string($0) }),
+                    "message": .string(report.message)
+                ])
+            } },
+            MCPTool(name: "theme_status", description: "Check installed and active themes on an arcade cabinet via its service.",
+                    properties: machine, required: ["machine"], readOnly: true) { a in try await wrap {
+                let m = try await ws.machine(try a.string("machine"))
+                let s = try await ws.hooks.service(m).themeStatus()
+                return .object([
+                    "machine": .string(m.name),
+                    "frontend": .string(s.frontend),
+                    "activeTheme": str(s.activeTheme),
+                    "installedThemes": .array(s.installedThemes.map { .string($0) }),
+                    "themesDir": .string(s.themesDir)
+                ])
+            } },
         ]
     }
 

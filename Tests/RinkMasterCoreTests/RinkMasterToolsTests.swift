@@ -40,6 +40,12 @@ final class FakeCabinets: @unchecked Sendable {
             case ("GET", "/v1/scores/file"): body = host == "a2.lan" ? "BIG" : "SMALL"
             case ("PUT", "/v1/scores/file"): body = #"{"written":true,"backup":"galaga.hi.bak-1","size":3}"#
             case ("GET", "/health"): body = #"{"ok":true,"version":"0.1.0","machine":"x"}"#
+            case ("GET", "/v1/theme"):
+                body = #"{"frontend":"emulationstation","activeTheme":"dll-arcade","installedThemes":["carbon","dll-arcade"],"themesDir":"/opt/themes","machine":"x"}"#
+            case ("POST", "/v1/theme/install"):
+                body = #"{"frontend":"emulationstation","theme":"dll-arcade","destDir":"/opt/themes/dll-arcade","files":["theme.xml"],"activated":true,"machine":"x"}"#
+            case ("POST", "/v1/theme/activate"):
+                body = #"{"frontend":"emulationstation","theme":"dll-arcade","activeTheme":"dll-arcade","changed":true,"machine":"x"}"#
             default: return (HTTPURLResponse(url: url, statusCode: 404, httpVersion: nil, headerFields: nil)!, Data("{}".utf8))
             }
             return (HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!, Data(body.utf8))
@@ -103,6 +109,7 @@ final class RinkMasterToolsTests: XCTestCase {
         let r = try XCTUnwrap(raw)
         let names = Set(try JSONDecoder().decode(JSONValue.self, from: Data(r.utf8))["result"]?["tools"]?.arrayValue?.compactMap { $0["name"]?.stringValue } ?? [])
         let expected: Set<String> = ["overview", "list_machines", "test_connection", "get_inventory", "list_emulators", "refresh_inventory", "refresh_frontend", "restart_frontend", "repair_roms", "sync_game_list", "set_default_emulator", "pin_game_emulator",
+            "install_theme", "theme_status",
             "search_games", "get_game", "random_game", "catalog_facets", "refresh_catalog", "master_status", "add_game", "remove_game",
             "get_scores", "refresh_scores", "player_rankings", "plan_score_sync", "apply_score_sync",
             "add_machine", "update_machine", "remove_machine", "set_master_path", "set_branding"]
@@ -587,5 +594,19 @@ final class RinkMasterToolsTests: XCTestCase {
         try CatalogCache.save(cache, to: dir.appendingPathComponent("catalog.json"))
         let q8 = try await call("master_status")
         XCTAssertEqual(q8.json["catalogGames"]?.intValue, 2)
+    }
+
+    func testThemeStatusAndInstallThemeTools() async throws {
+        let status = try await call("theme_status", ["machine": "xarcade"])
+        XCTAssertFalse(status.error)
+        XCTAssertEqual(status.json["frontend"]?.stringValue, "emulationstation")
+        XCTAssertEqual(status.json["activeTheme"]?.stringValue, "dll-arcade")
+        XCTAssertEqual(status.json["installedThemes"]?.arrayValue?.map(\.stringValue), ["carbon", "dll-arcade"])
+
+        let install = try await call("install_theme", ["machine": "xarcade"])
+        XCTAssertFalse(install.error)
+        XCTAssertEqual(install.json["theme"]?.stringValue, "dll-arcade")
+        XCTAssertEqual(install.json["method"]?.stringValue, "service")
+        XCTAssertEqual(install.json["activated"]?.boolValue, true)
     }
 }
