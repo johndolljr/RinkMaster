@@ -144,6 +144,12 @@ RinkMaster bundles `rinkmaster-mcp` inside the app bundle, allowing AI assistant
 
 ---
 
+## License
+
+RinkMaster is licensed under the MIT License. See [LICENSE](LICENSE) for the full license text.
+
+---
+
 ## Architecture & Design
 
 For deeper technical details on module boundaries, high-score synchronization, and caching architecture, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
